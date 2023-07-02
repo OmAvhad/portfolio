@@ -9,7 +9,15 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        inter: 'Inter',
+        megrim: 'Megrim'
+      },
+      colors: {
+        'purple': '#8D00FC',
+      },
+    },
   },
   plugins: [],
 }
