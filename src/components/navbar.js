@@ -1,14 +1,14 @@
 import React from 'react'
+import Link from 'next/link'
 
 function Navbar() {
     return (
-        <div>
-            <h1 className='font-megrim text-3xl sm:text-4xl'>
-                Om 
-            </h1>
-            <h1 className='font-megrim text-3xl sm:text-4xl'>
-                Avhad
-            </h1>
+        <div className='pb-24'>
+            <Link href="/">
+                <h1 className='italic text-xl md:text-2xl lg:text-3xl'>
+                    Om Avhad 
+                </h1>
+            </Link>
         </div>
     )
 }

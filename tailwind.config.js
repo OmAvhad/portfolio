@@ -12,7 +12,8 @@ module.exports = {
     extend: {
       fontFamily: {
         inter: 'Inter',
-        megrim: 'Megrim'
+        megrim: 'Megrim',
+        nunito: 'Nunito'
       },
       colors: {
         'purple': '#8D00FC',

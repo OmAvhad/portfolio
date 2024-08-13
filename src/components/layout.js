@@ -1,13 +1,13 @@
+import Footer from "./footer"
 import Navbar from "./navbar"
-import TopBar from "@/components/topBar"
 
 const Layout = ({ children }) => {
     return (
         <>
-            <TopBar/>
-            <div className="flex flex-col w-screen scroll-smooth px-10 py-8">
+            <div className="w-full m-auto max-w-[1100px] flex flex-col font-nunito scroll-smooth px-10 py-6">
                 <Navbar/>
                 {children}
+                <Footer/>
             </div>
         </>
     )
