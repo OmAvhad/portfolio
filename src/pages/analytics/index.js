@@ -1,8 +1,6 @@
 import RequestMetrics from "./components/requestMetrics"
 import CityMetrics from "./components/cityMetrics"
-
-import dynamic from 'next/dynamic';
-const MapBox = dynamic(() => import('./components/mapBox.js'), { ssr: false });
+import MapBox from "./components/mapBox"
 
 export default function Analytics() {
     return (
