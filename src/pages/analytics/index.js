@@ -1,53 +1,17 @@
-import axios from 'axios';
+import RequestMetrics from "./components/requestMetrics"
+import CityMetrics from "./components/cityMetrics"
 
-export async function getServerSideProps() {
-    try {
-        const { data } = await axios.get('https://portfolio-analytics-0kux.onrender.com/requests');
-        console.log(data);
-        return {
-            props: { data },
-        };
-    } catch (error) {
-        console.error(error);
-        return {
-          props: { data: null },
-        };
-    }
-}    
+import dynamic from 'next/dynamic';
+const MapBox = dynamic(() => import('./components/mapBox.js'), { ssr: false });
 
-export default function Analytics({ data }) {
-    if (!data) {
-        return (
-            <div>
-                Failed to fetch data
-            </div>
-        )
-    }
-
+export default function Analytics() {
     return (
         <>
             <h1 className='text-5xl pb-4'>Analytics</h1>
-            <div className='flex flex-col space-y-4'>
-                <div>
-                    <h2 className='text-3xl'>Last 24 Hrs</h2>
-                    <h3>Requests: {data.requestsLast24Hours}</h3>
-                    <h3>Unique Requests: {data.uniqueRequestsLast24Hours}</h3>
-                </div>
-                <div>
-                    <h2 className='text-3xl'>Last Week</h2>
-                    <h3>Requests: {data.requestsLastWeek}</h3>
-                    <h3>Unique Requests: {data.uniqueRequestsLastWeek}</h3>
-                </div>
-                <div>
-                    <h2 className='text-3xl'>Last Month</h2>
-                    <h3>Requests: {data.requestsLastMonth}</h3>
-                    <h3>Unique Requests: {data.uniqueRequestsLastMonth}</h3>
-                </div>
-                <div>
-                    <h2 className='text-3xl'>Overall</h2>
-                    <h3>Requests: {data.requests}</h3>
-                    <h3>Unique Requests: {data.uniqueRequests}</h3>
-                </div>
+            <div className="flex flex-col gap-4">
+                <RequestMetrics />
+                <CityMetrics />
+                <MapBox />
             </div>
         </>
     )

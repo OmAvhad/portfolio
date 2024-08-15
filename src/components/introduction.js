@@ -3,7 +3,7 @@ import React from 'react'
 function Introduction() {
     return (
         <div className=''>
-            <h1 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl pb-2'>Hey, I&apos;am Om 👋</h1>
+            <h1 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl pb-2'>Hey, I&apos;m Om 👋</h1>
             <h2 className='text-xl sm:text-xl md:text-2xl lg:text-3xl pb-5'>Software Engineer based in Mumbai, India</h2>
             <p className='text-lg'>
                 Dedicated to delivering exceptional backend solutions, 

@@ -5,7 +5,7 @@ require('dotenv').config();
 
 // Initialize Express app
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
 
 app.set('trust proxy', true);
@@ -127,6 +127,30 @@ app.get('/requests', async (req, res) => {
     };
 
     res.json(data);
+});
+
+// get list of cities and number of requests from each city
+app.get('/requests/cities', async (req, res) => {
+    const cities = await Request.aggregate([
+        { $group: { _id: '$ipDetails.city', count: { $sum: 1 } } },
+        { $sort: { count: -1 } }
+    ]);
+
+    res.json(cities);
+});
+
+// fetch all lat and lon from the database
+app.get('/requests/coordinates', async (req, res) => {
+    const coordinates = await Request.aggregate([
+        {
+            $project: {
+                _id: 0, // Exclude _id field
+                lat: "$ipDetails.lat",
+                lon: "$ipDetails.lon"
+            }
+        }
+    ]);
+    res.json(coordinates);
 });
 
 // Start the server
