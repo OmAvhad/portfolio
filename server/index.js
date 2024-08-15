@@ -57,10 +57,10 @@ app.get('/', (req, res) => {
     }
 
     // Handle IPv6 localhost case
-    if (clientIp === '::1' || clientIp === '127.0.0.1') {
+    if (ip === '::1' || ip === '127.0.0.1') {
         res.json({ message: 'You are accessing from localhost.' });
     } else {
-        res.json({ message: `Hello! Your IP address is: ${clientIp}` });
+        res.json({ message: `Hello! Your IP address is: ${ip}` });
     }
 });
 
