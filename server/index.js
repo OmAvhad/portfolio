@@ -56,8 +56,10 @@ app.post('/request', async (req, res) => {
 
     // make a api call to get the ip address details
     try {
+        console.log(ip);
         const ipData = await fetch(`http://ip-api.com/json/${ip}`);
         const ipDetails = await ipData.json();
+        console.log(ipDetails);
         // create a new Request document
         const newRequest = new Request({ ip, timestamp, ipDetails });
         await newRequest.save();
