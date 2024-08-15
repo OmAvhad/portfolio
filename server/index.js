@@ -8,6 +8,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
 
+app.set('trust proxy', true);
+ 
 // CORS
 app.use(cors());
 // Middleware
@@ -44,9 +46,18 @@ const RequestSchema = new mongoose.Schema({
 
 const Request = mongoose.model('Request', RequestSchema);
 
-// Routes
 app.get('/', (req, res) => {
-  res.send('Hello, World!');
+    // Attempt to get IP from headers if available
+    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    // If IP is a list (comma-separated), get the first one
+    const clientIp = Array.isArray(ip) ? ip[0] : ip;
+
+    // Handle IPv6 localhost case
+    if (clientIp === '::1' || clientIp === '127.0.0.1') {
+        res.json({ message: 'You are accessing from localhost.' });
+    } else {
+        res.json({ message: `Hello! Your IP address is: ${clientIp}` });
+    }
 });
 
 app.post('/request', async (req, res) => {
