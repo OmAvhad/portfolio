@@ -47,10 +47,14 @@ const RequestSchema = new mongoose.Schema({
 const Request = mongoose.model('Request', RequestSchema);
 
 app.get('/', (req, res) => {
-    // Attempt to get IP from headers if available
-    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    // Get IP from headers if available
+    let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
     // If IP is a list (comma-separated), get the first one
-    const clientIp = Array.isArray(ip) ? ip[0] : ip;
+    if (typeof ip === 'string') {
+        // Split the list and take the first IP
+        ip = ip.split(',')[0].trim();
+    }
 
     // Handle IPv6 localhost case
     if (clientIp === '::1' || clientIp === '127.0.0.1') {
@@ -61,8 +65,15 @@ app.get('/', (req, res) => {
 });
 
 app.post('/request', async (req, res) => {
-    // fetch ip address from request headers
-    const ip = req.ip;
+    // Get IP from headers if available
+    let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
+    // If IP is a list (comma-separated), get the first one
+    if (typeof ip === 'string') {
+        // Split the list and take the first IP
+        ip = ip.split(',')[0].trim();
+    }
+
     const timestamp = new Date();
 
     // make a api call to get the ip address details
