@@ -58,15 +58,14 @@ app.post('/request', async (req, res) => {
     try {
         const ipData = await fetch(`http://ip-api.com/json/${ip}`);
         const ipDetails = await ipData.json();
+        // create a new Request document
+        const newRequest = new Request({ ip, timestamp, ipDetails });
+        await newRequest.save();
+        res.send('Request logged!');
     } catch (err) {
         console.error('Error fetching ip details:', err);
         res.status(500).send('Error fetching ip details');
     }
-
-    // create a new Request document
-    const newRequest = new Request({ ip, timestamp, ipDetails });
-    await newRequest.save();
-    res.send('Request logged!');
 }); 
 
 app.get('/requests', async (req, res) => {
