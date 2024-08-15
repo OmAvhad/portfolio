@@ -73,25 +73,25 @@ app.post('/request', async (req, res) => {
 
 app.get('/requests', async (req, res) => {
     // overall
-    const requests = await Request.countDocuments();  
+    const requests = (await Request.find()).length;  
     const uniqueRequests = (await Request.distinct('ip')).length;
 
     // from one month
     const oneMonthAgo = new Date();
     oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
-    const requestsLastMonth = await Request.countDocuments({ timestamp: { $gte: oneMonthAgo } });
+    const requestsLastMonth = (await Request.find({ timestamp: { $gte: oneMonthAgo } })).length;
     const uniqueRequestsLastMonth = (await Request.distinct('ip', { timestamp: { $gte: oneMonthAgo } })).length;
 
     // for one week
     const oneWeekAgo = new Date();
     oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-    const requestsLastWeek = await Request.countDocuments({ timestamp: { $gte: oneWeekAgo } });
+    const requestsLastWeek = (await Request.countDocuments({ timestamp: { $gte: oneWeekAgo } }));
     const uniqueRequestsLastWeek = (await Request.distinct('ip', { timestamp: { $gte: oneWeekAgo } })).length;
 
     // for last 24 hours
     const last24Hours = new Date();
     last24Hours.setHours(last24Hours.getHours() - 24);
-    const requestsLast24Hours = await Request.countDocuments({ timestamp: { $gte: last24Hours } });
+    const requestsLast24Hours = (await Request.countDocuments({ timestamp: { $gte: last24Hours } }));
     const uniqueRequestsLast24Hours = (await Request.distinct('ip', { timestamp: { $gte: last24Hours } })).length;
 
     const data = {
