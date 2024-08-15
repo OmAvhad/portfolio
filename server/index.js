@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-
 require('dotenv').config();
 
 // Initialize Express app
@@ -9,11 +8,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
 
-// Middleware
-app.use(express.json()); // Parse JSON bodies
-
 // CORS
 app.use(cors());
+// Middleware
+app.use(express.json()); // Parse JSON bodies
 
 // MongoDB connection
 mongoose
