@@ -153,6 +153,47 @@ app.get('/requests/coordinates', async (req, res) => {
     res.json(coordinates);
 });
 
+app.get('/requests/graph-metrics', async (req, res) => {
+    const frame = req.query.frame || '24h';
+    let data = [];
+    let labels = [];
+    let groupBy = '';
+    let match = {};
+    
+    switch (frame) {
+        case '24h':
+            groupBy = { name: { $hour: '$timestamp' } };
+            break;
+        case '7d':
+            groupBy = { name: { $dateToString: { format: '%d-%m', date: '$timestamp' } } };
+            break;
+        case '1m':
+            groupBy = { name: { $dateToString: { format: '%d-%m', date: '$timestamp' } } };
+            match = { timestamp: { $gte: new Date(new Date().setMonth(new Date().getMonth() - 1)) } };
+            break;
+        case '1y':
+            groupBy = { name: { $dateToString: { format: '%Y-%m', date: '$timestamp' } } };
+            break;
+        default:
+            groupBy = { name: { $hour: '$timestamp' } };
+    }
+
+    data = await Request.aggregate([
+        { $match: match },
+        { $group: { _id: groupBy, count: { $sum: 1 } } },
+        { $sort: { _id: 1 } }
+    ]);
+
+    let sum_count = 0;
+
+    data.forEach(item => {
+        sum_count += item.count;
+        labels.push(item._id);
+    });
+
+    res.json({ data, labels, total: sum_count });
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
