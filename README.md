@@ -1,7 +1,7 @@
 <div align="center">
   <h1> Om Avhad </h1>
   <h3> Portfolio Website. </h3>
-  This portfolio website showcases my work and showcases my work and provides detailed analytics to track visitors.
+  This portfolio website showcases my work and provides detailed analytics to track visitors.
 </div>
 
 ## Tech Stack
