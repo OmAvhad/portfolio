@@ -22,14 +22,14 @@ function Index() {
                 <meta name="author" content="Om Avhad" />
 
                 <meta property="og:type" content="website" />
-                <meta property="og:url" content="https://omavhad.xyz/" />
+                <meta property="og:url" content="https://omavhad.tech/" />
                 <meta property="og:title" content="Om Avhad | Software Engineer" />
                 <meta property="og:description" content="Om Avhad is a Software Engineer based in Mumbai, India. Dedicated to delivering exceptional backend solutions, With a strong foundation in building scalable and performant systems." />
-                <meta property="og:image" content="https://omavhad.xyz/om-photograph.jpg" />
+                <meta property="og:image" content="https://omavhad.tech/om-photograph.jpg" />
 
                 <link rel="icon" href="/favicon.ico" />
                 <meta name="robots" content="index, follow" />
-                <link rel="canonical" href="https://omavhad.xyz/" />
+                <link rel="canonical" href="https://omavhad.tech/" />
             </Head>
             <Introduction/>
         </div>
