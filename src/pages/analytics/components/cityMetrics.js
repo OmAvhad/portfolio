@@ -26,10 +26,10 @@ export default function CityMetrics() {
             <div className='flex flex-col'>
                 {data.length > 0 ? (
                     data.map(city => (
-                        <div key={city._id} className="flex flex-row gap-2">
-                            <span>{city._id}</span>
+                        <div key={city._id} className="flex flex-col">
+                            <span>{city._id} : {city.count}</span>
                             <div 
-                                style={{ width: `${city.count}px`, backgroundColor: 'black', height: '20px'}}
+                                style={{ width: `${city.count}px`, backgroundColor: 'black', height: '10px'}}
                                 title={`${city.count}`} // Add title attribute to show count on hover
                             ></div>
                         </div>

@@ -23,7 +23,7 @@ export default function MapBox() {
 
     return(
         <div>
-            <div className='text-3xl'>Map</div>
+            <div className='text-3xl'>Location Metrics Map</div>
             <LeafLet coordinates={coordinates} />
         </div>
     ); 
