@@ -10,22 +10,22 @@ const SiGmail = dynamic(() => import('react-icons/si').then(mod => mod.SiGmail))
 
 function Footer() {
     return (
-        <div className='flex flex-col items-center justify-center bottom-0 left-0 w-full pt-36 pb-10'>
+        <div className='flex flex-col items-center justify-center bottom-0 left-0 w-full pt-24 pb-8'>
             <div className='flex flex-row space-x-5 pb-4'>
                 <Link href="https://www.linkedin.com/in/omavhad/" target='_blank'>
-                    <FaLinkedin className='text-2xl'/>
+                    <FaLinkedin className='text-2xl hover:text-gray-500'/>
                 </Link>
                 <Link href="https://github.com/OmAvhad" target='_blank'>
-                    <FaGithub className='text-2xl'/>
+                    <FaGithub className='text-2xl hover:text-gray-500'/>
                 </Link>
                 <Link href="https://x.com/omavhadtwt" target='_blank'>
-                    <FaTwitter className='text-2xl'/>
+                    <FaTwitter className='text-2xl hover:text-gray-500'/>
                 </Link>
                 <Link href="https://www.instagram.com/_om_avhad/" target='_blank'>
-                    <FaInstagram className='text-2xl'/>
+                    <FaInstagram className='text-2xl hover:text-gray-500'/>
                 </Link>
                 <Link href="mailto:omavhad22@gmail.com">
-                    <SiGmail className='text-2xl'/>
+                    <SiGmail className='text-2xl hover:text-gray-500'/>
                 </Link>
             </div>
             <h1 className='text-sm'>
