@@ -22,7 +22,6 @@ export default function CityMetrics() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`${analytics}/requests/cities`);
-                console.log(response.data);
                 setData(response.data);
             } catch (error) {
                 console.error(error);

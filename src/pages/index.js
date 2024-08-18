@@ -3,12 +3,12 @@ import Introduction from '@/components/introduction'
 import Head from 'next/head';
 import axios from 'axios';
 import { useEffect } from 'react';
+import analytics from '@/config/api';
 
 function Index() {
     // make api call to post request but it should be client side
     useEffect(() => {
-        axios.post('https://portfolio-analytics-0kux.onrender.com/request')
-            .then(res => console.log(res))
+        axios.post(`${analytics}/request`)
             .catch(err => console.error(err));
     }, []);
 

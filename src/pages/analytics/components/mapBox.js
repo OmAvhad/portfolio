@@ -11,7 +11,6 @@ export default function MapBox() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`${analytics}/requests/coordinates`);
-                console.log(response.data);
                 setCoordinates(response.data);
             } catch (error) {
                 console.error(error);
