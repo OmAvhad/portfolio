@@ -29,10 +29,6 @@ mongoose
 const RequestSchema = new mongoose.Schema({
     ip: String,
     timestamp: Date,
-    source: {
-        type: String,
-        default: 'direct'
-    },
     ipDetails: {
         country: String,
         contryCode: String,
@@ -80,14 +76,13 @@ app.post('/request', async (req, res) => {
     }
 
     const timestamp = new Date();
-    const source = req.body.referrer || 'direct';
 
     // make a api call to get the ip address details
     try {
         const ipData = await fetch(`http://ip-api.com/json/${ip}`);
         const ipDetails = await ipData.json();
         // create a new Request document
-        const newRequest = new Request({ ip, timestamp, source, ipDetails });
+        const newRequest = new Request({ ip, timestamp, ipDetails });
         await newRequest.save();
         res.send('Request logged!');
     } catch (err) {
@@ -203,13 +198,6 @@ app.get('/requests/graph-metrics', async (req, res) => {
     });
 
     res.json({ data, labels, total: sum_count });
-});
-
-app.get('/requests/source-metrics', async (req, res) => {
-    const data = await Request.aggregate([
-        { $group: { _id: '$source', count: { $sum: 1 } } }
-    ]);
-    res.json(data);
 });
 
 // Start the server

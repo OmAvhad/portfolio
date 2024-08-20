@@ -3,23 +3,15 @@ import Introduction from '@/components/introduction'
 import Head from 'next/head';
 import axios from 'axios';
 import { useEffect } from 'react';
-import { useRouter } from 'next/router';
 import analytics from '@/config/api';
 
 function Index() {
-    const router = useRouter();
-    
     // make api call to post request but it should be client side
     useEffect(() => {
-        const { query } = router;
-        // Ensure the query params are available before making the API call
-        if (Object.keys(query).length > 0) {
-            const source = query.source || 'direct';
-            axios.post(`${analytics}/request`, { referrer: source })
-                .then(res => console.log(res))
-                .catch(err => console.error(err));
-        }
-    }, [router.query]);
+        axios.post(`${analytics}/request`)
+            .then(res => console.log(res))
+            .catch(err => console.error(err));
+    }, []);
 
     return (
         <div>
