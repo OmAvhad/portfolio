@@ -25,7 +25,6 @@ export default function LineGraph() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`${analytics}/requests/graph-metrics?frame=${frame}`);
-                console.log(response.data);
                 setTotalRequests(response.data.total);
                 setData({
                     labels: response.data.labels.map(item => item.name),

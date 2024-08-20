@@ -133,7 +133,8 @@ app.get('/requests', async (req, res) => {
 // get list of cities and number of requests from each city
 app.get('/requests/cities', async (req, res) => {
     const cities = await Request.aggregate([
-        { $group: { _id: '$ipDetails.city', count: { $sum: 1 } } },
+        { $match: { "ipDetails.city": { $ne: null, $ne: "" } } },
+        { $group: { _id: "$ipDetails.city", count: { $sum: 1 } } },
         { $sort: { count: -1 } }
     ]);
 
@@ -143,6 +144,12 @@ app.get('/requests/cities', async (req, res) => {
 // fetch all lat and lon from the database
 app.get('/requests/coordinates', async (req, res) => {
     const coordinates = await Request.aggregate([
+        {
+            $match: {
+                "ipDetails.lat": { $ne: null },
+                "ipDetails.lon": { $ne: null }
+            }
+        },
         {
             $project: {
                 _id: 0, // Exclude _id field
