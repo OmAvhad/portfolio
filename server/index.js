@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const { data } = require('autoprefixer');
 require('dotenv').config();
 
 // Initialize Express app
@@ -76,16 +77,15 @@ app.post('/request', async (req, res) => {
     }
 
     const timestamp = new Date();
-
     const source = req.body.referrer || 'direct';
 
     // make a api call to get the ip address details
     try {
-        // const ipData = await fetch(`http://ip-api.com/json/${ip}`);
-        // const ipDetails = await ipData.json();
-        // // create a new Request document
-        // const newRequest = new Request({ ip, timestamp, source, ipDetails });
-        // await newRequest.save();
+        const ipData = await fetch(`http://ip-api.com/json/${ip}`);
+        const ipDetails = await ipData.json();
+        // create a new Request document
+        const newRequest = new Request({ ip, timestamp, source, ipDetails });
+        await newRequest.save();
         res.send('Request logged!');
     } catch (err) {
         console.error('Error fetching ip details:', err);
@@ -193,6 +193,13 @@ app.get('/requests/graph-metrics', async (req, res) => {
     });
 
     res.json({ data, labels, total: sum_count });
+});
+
+app.get('/requests/source-metrics', async (req, res) => {
+    const data = await Request.aggregate([
+        { $group: { _id: '$source', count: { $sum: 1 } } }
+    ]);
+    res.json(data);
 });
 
 // Start the server

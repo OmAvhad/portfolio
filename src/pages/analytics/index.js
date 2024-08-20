@@ -2,6 +2,7 @@ import RequestMetrics from "./components/requestMetrics"
 import CityMetrics from "./components/cityMetrics"
 import MapBox from "./components/mapBox"
 import LineGraph from "./components/lineGraph"
+import SourceRadar from "./components/sourceRadar"
 
 export default function Analytics() {
     return (
@@ -9,6 +10,7 @@ export default function Analytics() {
             <h1 className='text-5xl pb-4'>Analytics</h1>
             <div className="flex flex-col gap-4">
                 <LineGraph />
+                <SourceRadar />
                 <RequestMetrics />
                 <CityMetrics />
                 <MapBox />

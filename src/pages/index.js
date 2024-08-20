@@ -12,12 +12,14 @@ function Index() {
     // make api call to post request but it should be client side
     useEffect(() => {
         const { query } = router;
-        const source = query.source || 'direct';
-        console.log(source);
-        axios.post(`${analytics}/request`, { referrer: source })
-            .then(res => console.log(res))
-            .catch(err => console.error(err));
-    }, []);
+        // Ensure the query params are available before making the API call
+        if (Object.keys(query).length > 0) {
+            const source = query.source || 'direct';
+            axios.post(`${analytics}/request`, { referrer: source })
+                .then(res => console.log(res))
+                .catch(err => console.error(err));
+        }
+    }, [router.query]);
 
     return (
         <div>
