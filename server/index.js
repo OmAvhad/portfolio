@@ -29,7 +29,10 @@ mongoose
 const RequestSchema = new mongoose.Schema({
     ip: String,
     timestamp: Date,
-    source: String,
+    source: {
+        type: String,
+        default: 'direct'
+    },
     ipDetails: {
         country: String,
         contryCode: String,

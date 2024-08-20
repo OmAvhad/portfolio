@@ -9,8 +9,10 @@ export default function Analytics() {
         <>
             <h1 className='text-5xl pb-4'>Analytics</h1>
             <div className="flex flex-col gap-4">
-                <LineGraph />
-                <SourceRadar />
+                <div className="flex flex-col sm:flex-col md:flex-row lg:flex-col">
+                    <LineGraph />
+                    <SourceRadar />
+                </div>
                 <RequestMetrics />
                 <CityMetrics />
                 <MapBox />

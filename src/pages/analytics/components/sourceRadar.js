@@ -3,7 +3,7 @@ import axios from "axios";
 import analytics from "@/config/api";
 import dynamic from "next/dynamic";
 import 'chart.js/auto';
-const Radar = dynamic(() => import("react-chartjs-2").then((mod) => mod.Radar), { ssr: false });
+const PolarArea = dynamic(() => import("react-chartjs-2").then((mod) => mod.PolarArea), { ssr: false });
 
 export default function SourceRadar() {
     const [ data, setData ] = useState({
@@ -27,7 +27,6 @@ export default function SourceRadar() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`${analytics}/requests/source-metrics`);
-                console.log(response.data);
                 setData({
                     labels: response.data.map(item => item._id),
                     datasets: [
@@ -46,8 +45,9 @@ export default function SourceRadar() {
     }, []);
 
     return (
-        <div>
-            <Radar data={data}/>
+        <div className="flex flex-col sm:h-44 md:h-80 lg:h-96 pb-8">
+            <h1 className='text-3xl'>Sources</h1>
+            <PolarArea data={data}/>
         </div>
     );
 }
