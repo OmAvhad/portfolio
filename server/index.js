@@ -172,6 +172,7 @@ app.get('/requests/graph-metrics', async (req, res) => {
             break;
         case '7d':
             groupBy = { name: { $dateToString: { format: '%d-%m', date: '$timestamp' } } };
+            match = { timestamp: { $gte: new Date(new Date().setDate(new Date().getDate() - 7)) } };
             break;
         case '1m':
             groupBy = { name: { $dateToString: { format: '%d-%m', date: '$timestamp' } } };
