@@ -168,10 +168,12 @@ app.get('/requests/graph-metrics', async (req, res) => {
     
     switch (frame) {
         case '24h':
-            groupBy = { name: { $hour: '$timestamp' } };
+            groupBy = { name: { $dateToString: { format: '%H:%M', date: '$timestamp' } } };
+            match = { timestamp: { $gte: new Date(new Date().setHours(new Date().getHours() - 24)) } };
             break;
         case '7d':
             groupBy = { name: { $dateToString: { format: '%d-%m', date: '$timestamp' } } };
+            match = { timestamp: { $gte: new Date(new Date().setDate(new Date().getDate() - 7)) } };
             break;
         case '1m':
             groupBy = { name: { $dateToString: { format: '%d-%m', date: '$timestamp' } } };
