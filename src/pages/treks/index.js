@@ -31,7 +31,7 @@ function Treks() {
             title: 'Irshalgad',
             description:
                 'A hidden gem near Karjat — short, scenic, and perfect for an adventurous climb with stunning views.',
-            image: '/irshalgad/image-2.jepg',
+            image: '/irshalgad/image-2.jpeg',
             date: '2022-07-06',
         },
     ]
