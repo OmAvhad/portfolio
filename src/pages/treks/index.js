@@ -14,7 +14,7 @@ function Treks() {
             year: 2025,
             title: 'Rajgad',
             description:
-                'The first fort captured by Shivaji Maharaj, where the dream of Swarajya began.',
+                'The capital of Shivaji Maharaj’s kingdom for over two decades — a fortress steeped in history and valor.',
             image: '/rajgad/image-1.jpg',
             date: '2025-10-11',
         },
