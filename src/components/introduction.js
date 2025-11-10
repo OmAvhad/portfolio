@@ -17,6 +17,13 @@ export default function Introduction() {
                 &nbsp;allowing me to contribute meaningfully to diverse projects. 
                 Outside of coding, you&apos;ll find me swimming or enjoying a good laugh, 
                 blending my passion for innovation with a well-rounded approach to life. 
+                &nbsp;Also, I love hiking — check out my&nbsp;
+                <span className='underline hover:text-gray-500'>
+                <Link href="/treks">
+                    treks
+                </Link>
+                </span>
+                .
             </p>
         </div>
     )

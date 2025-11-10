@@ -4,6 +4,7 @@ import Head from 'next/head';
 import axios from 'axios';
 import { useEffect } from 'react';
 import analytics from '@/config/api';
+import Link from 'next/link';
 
 function Index() {
     // make api call to post request but it should be client side

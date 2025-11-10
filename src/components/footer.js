@@ -2,11 +2,11 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
-const FaLinkedin = dynamic(() => import('react-icons/fa').then(mod => mod.FaLinkedin));
-const FaGithub = dynamic(() => import('react-icons/fa').then(mod => mod.FaGithub));
-const FaTwitter = dynamic(() => import('react-icons/fa').then(mod => mod.FaTwitter));
-const FaInstagram = dynamic(() => import('react-icons/fa').then(mod => mod.FaInstagram));
-const SiGmail = dynamic(() => import('react-icons/si').then(mod => mod.SiGmail));
+const FaLinkedin = dynamic(() => import('react-icons/fa').then(mod => mod.FaLinkedin), { ssr: false });
+const FaGithub = dynamic(() => import('react-icons/fa').then(mod => mod.FaGithub), { ssr: false });
+const FaTwitter = dynamic(() => import('react-icons/fa').then(mod => mod.FaTwitter), { ssr: false });
+const FaInstagram = dynamic(() => import('react-icons/fa').then(mod => mod.FaInstagram), { ssr: false });
+const SiGmail = dynamic(() => import('react-icons/si').then(mod => mod.SiGmail), { ssr: false });
 
 function Footer() {
     return (
@@ -29,7 +29,7 @@ function Footer() {
                 </Link>
             </div>
             <h1 className='text-sm'>
-                &copy; Om Avhad 2024
+                &copy; Om Avhad 2025
             </h1>
         </div>
     )
