@@ -1,41 +1,7 @@
-import React from 'react'
+import React from 'react';
+import { treks } from '../../data/trek';
 
 function Treks() {
-    const treks = [
-        {
-            year: 2025,
-            title: 'Torna | Prachandgad',
-            description:
-                'The first fort captured by Shivaji Maharaj, where the dream of Swarajya began.',
-            image: '/torna/image-1.jpeg',
-            date: '2025-11-08',
-        },
-        {
-            year: 2025,
-            title: 'Rajgad',
-            description:
-                'The capital of Shivaji Maharaj’s kingdom for over two decades a fortress steeped in history and valor.',
-            image: '/rajgad/image-1.jpg',
-            date: '2025-10-11',
-        },
-        {
-            year: 2025,
-            title: 'Sinhagad',
-            description:
-                'A symbol of bravery, where Tanaji’s sacrifice turned defeat into legend.',
-            image: '/sinhagad/image-1.jpg',
-            date: '2025-09-07',
-        },
-        {
-            year: 2022,
-            title: 'Irshalgad',
-            description:
-                'A hidden gem near Karjat, short, scenic, and perfect for an adventurous climb with stunning views.',
-            image: '/irshalgad/image-2.jpeg',
-            date: '2022-07-06',
-        },
-    ]
-
     const yearsToFirstId = React.useMemo(() => {
         const map = new Map()
         treks.forEach((t, index) => {
@@ -48,24 +14,26 @@ function Treks() {
     }, [treks])
 
     return (
-        <div className="treks-page">
-            <aside className="left-panel">
-                <div className="left-wrap">
-                    <h1 className="title">Treks</h1>
-                    <h2 className="subtitle">
-                        Forts, trails, and timeless journeys.
+        <div className="flex flex-col lg:flex-row lg:gap-6">
+            <aside className="border-b lg:border-b-0 lg:border-r border-gray-200 lg:sticky lg:top-0 lg:h-screen lg:flex-none lg:w-[320px]">
+                <div className="flex flex-col h-full py-6 px-4">
+                    <h1 className="m-0 mb-2 text-[56px] leading-[0.95] tracking-[-1px]">
+                        Treks
+                    </h1>
+                    <h2 className="m-0 text-[18px] font-medium text-gray-600">
+                        Trails, peaks, and timeless journeys.
                     </h2>
-                    <p className="lede">
+                    <p className="mt-3 mb-6 text-[16px] text-gray-900">
                         From forts to forests, documenting every ascent.
                     </p>
-                    <nav className="years">
+                    <nav className="mt-6 grid auto-rows-min gap-3 overflow-auto pr-2">
                         {Array.from(yearsToFirstId.keys())
                             .sort((a, b) => b - a)
                             .map((year) => (
                                 <a
                                     key={year}
                                     href={`#${yearsToFirstId.get(year)}`}
-                                    className="year-link"
+                                    className="no-underline text-gray-900 font-semibold hover:text-blue-600"
                                 >
                                     {year}
                                 </a>
@@ -73,28 +41,38 @@ function Treks() {
                     </nav>
                 </div>
             </aside>
-            <main className="timeline">
-                <div className="line" />
+
+            <main className="relative flex-1 py-6 px-2 lg:px-2">
+                {/* vertical line */}
+                <div className="absolute top-0 bottom-0 left-6 lg:left-1/2 w-[2px] bg-gradient-to-b from-gray-200 to-gray-300 lg:-translate-x-1/2" />
+
                 {treks.map((t, index) => {
-                    const sideClass = index % 2 === 0 ? 'left' : 'right'
+                    const isLeft = index % 2 === 0
+                    const justifyClass = isLeft ? 'lg:justify-start' : 'lg:justify-end'
+
                     return (
                         <section
                             id={`y${t.year}-${index}`}
-                            key={t.year}
-                            className={`item ${sideClass}`}
+                            key={`${t.year}-${index}`}
+                            className={`relative flex items-center my-14 min-h-[80px] justify-start ${justifyClass}`}
                         >
-                            <div className="dot" aria-hidden />
-                            <article className="card">
+                            <div
+                                className="absolute left-4 lg:left-1/2 top-1/2 w-[14px] h-[14px] bg-gray-900 border-4 border-white rounded-full ring-2 ring-gray-900/20 -translate-x-1/2 -translate-y-1/2"
+                                aria-hidden
+                            />
+                            <article className="bg-white border border-gray-200 rounded-xl shadow-lg p-6 ml-12 lg:ml-0 md:w-[68%] lg:w-[48%] lg:max-w-[680px]">
                                 {t.image && (
-                                    <div className="card-media">
-                                        <img src={t.image} alt={`${t.title} (${t.year})`} />
+                                    <div className="-mx-6 -mt-6 mb-3 rounded-t-xl overflow-hidden h-[300px] bg-gray-100">
+                                        <img
+                                            src={t.image}
+                                            alt={`${t.title} (${t.year})`}
+                                            className="w-full h-full object-cover block"
+                                        />
                                     </div>
                                 )}
-                                <h3 className="card-title">
-                                    {t.title}
-                                </h3>
+                                <h3 className="text-[20px] mb-1.5">{t.title}</h3>
                                 {t.date && (
-                                    <div className="card-meta">
+                                    <div className="text-[13px] text-gray-500 mb-2">
                                         {new Date(t.date).toLocaleDateString(undefined, {
                                             day: '2-digit',
                                             month: 'short',
@@ -102,185 +80,12 @@ function Treks() {
                                         })}
                                     </div>
                                 )}
-                                <p className="card-text">{t.description}</p>
+                                <p className="text-gray-700 leading-6">{t.description}</p>
                             </article>
                         </section>
                     )
                 })}
             </main>
-            <style jsx>{`
-                .treks-page {
-                    display: flex;
-                    gap: 48px;
-                    padding: 20px 24px;
-                }
-                .left-panel {
-                    position: sticky;
-                    top: 0;
-                    height: 100vh;
-                    flex: 0 0 360px;
-                    border-right: 1px solid #e5e7eb;
-                }
-                .left-wrap {
-                    display: flex;
-                    flex-direction: column;
-                    height: 100%;
-                    padding: 24px 16px;
-                }
-                .title {
-                    margin: 0 0 8px 0;
-                    font-size: 56px;
-                    line-height: 0.95;
-                    letter-spacing: -1px;
-                }
-                .subtitle {
-                    margin: 0;
-                    font-size: 18px;
-                    font-weight: 500;
-                    color: #4b5563;
-                }
-                .lede {
-                    margin: 12px 0 24px;
-                    font-size: 16px;
-                    color: #111827;
-                }
-                .years {
-                    margin-top: 24px;
-                    display: grid;
-                    grid-auto-rows: min-content;
-                    gap: 12px;
-                    overflow: auto;
-                    padding-right: 8px;
-                }
-                .year-link {
-                    text-decoration: none;
-                    color: #111827;
-                    font-weight: 600;
-                }
-                .year-link:hover {
-                    color: #2563eb;
-                }
-
-                .timeline {
-                    position: relative;
-                    flex: 1 1 auto;
-                    padding: 24px 8px 24px 8px;
-                }
-                .line {
-                    position: absolute;
-                    left: 50%;
-                    top: 0;
-                    bottom: 0;
-                    width: 2px;
-                    background: linear-gradient(#e5e7eb, #cbd5e1);
-                    transform: translateX(-50%);
-                }
-                .item {
-                    position: relative;
-                    display: flex;
-                    align-items: center;
-                    margin: 56px 0;
-                    min-height: 80px;
-                }
-                .item.left {
-                    justify-content: flex-start;
-                }
-                .item.right {
-                    justify-content: flex-end;
-                }
-                .card {
-                    width: calc(50% - 24px);
-                    max-width: 680px;
-                    background: #ffffff;
-                    border: 1px solid #e5e7eb;
-                    border-radius: 12px;
-                    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
-                    padding: 24px 24px;
-                }
-                .card-media {
-                    margin: -24px -24px 12px -24px;
-                    border-top-left-radius: 12px;
-                    border-top-right-radius: 12px;
-                    overflow: hidden;
-                    height: 240px;
-                    background: #f3f4f6;
-                }
-                .card-media img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    display: block;
-                }
-                .card-title {
-                    margin: 0 0 6px 0;
-                    font-size: 20px;
-                }
-                .card-meta {
-                    margin: 0 0 10px 0;
-                    font-size: 13px;
-                    color: #6b7280;
-                    letter-spacing: 0.2px;
-                }
-                .card-text {
-                    margin: 0;
-                    color: #374151;
-                    line-height: 1.6;
-                }
-                .dot {
-                    position: absolute;
-                    left: 50%;
-                    width: 14px;
-                    height: 14px;
-                    background: #111827;
-                    border: 3px solid #ffffff;
-                    border-radius: 50%;
-                    box-shadow: 0 0 0 2px #11182722;
-                    transform: translate(-50%, -50%);
-                    top: 50%;
-                }
-
-                /* Responsive */
-                @media (max-width: 1024px) {
-                    .treks-page {
-                        gap: 24px;
-                    }
-                    .left-panel {
-                        flex-basis: 300px;
-                    }
-                }
-                @media (max-width: 840px) {
-                    .treks-page {
-                        flex-direction: column;
-                        padding: 24px 16px;
-                    }
-                    .left-panel {
-                        position: relative;
-                        height: auto;
-                        border-right: none;
-                        border-bottom: 1px solid #e5e7eb;
-                    }
-                    .timeline {
-                        padding-top: 32px;
-                    }
-                    .line {
-                        left: 24px;
-                        transform: none;
-                    }
-                    .item,
-                    .item.left,
-                    .item.right {
-                        justify-content: flex-start;
-                    }
-                    .card {
-                        width: auto;
-                        margin-left: 48px;
-                    }
-                    .dot {
-                        left: 24px;
-                        transform: translate(-50%, -50%);
-                    }
-                }
-            `}</style>
         </div>
     )
 }
