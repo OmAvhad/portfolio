@@ -1,15 +1,15 @@
-import Footer from "./footer"
-import Navbar from "./navbar"
+import Footer from "./Footer"
+import Sidebar from "./Sidebar"
 
 const Layout = ({ children }) => {
     return (
-        <>
-            <div className="w-full m-auto max-w-[1100px] flex flex-col font-nunito scroll-smooth px-10 py-6">
-                <Navbar/>
+        <div className="flex min-h-screen bg-white text-black font-nunito">
+            <Sidebar />
+            <main className="flex-1 md:pl-32 px-5 md:px-10 max-w-5xl mx-auto w-full">
                 {children}
                 <Footer/>
-            </div>
-        </>
+            </main>
+        </div>
     )
 }
 

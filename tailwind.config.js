@@ -11,12 +11,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        inter: 'Inter',
-        megrim: 'Megrim',
-        nunito: 'Nunito'
-      },
-      colors: {
-        'purple': '#8D00FC',
+        'space-grotesk': ['Space Grotesk', 'sans-serif'],
       },
     },
   },
