@@ -7,7 +7,7 @@ const About = () => {
             <h2 className="text-lg font-normal text-gray-500 mb-12 tracking-widest">About me</h2>
             
             <div className="max-w-3xl">
-                <h3 className="text-lg md:text-2xl mb-8 leading-snug">
+                <h3 className="text-md md:text-2xl mb-8 leading-snug">
                     I’m an engineer, builder, and explorer - <br/>
                     drawing inspiration from the systems I design <br/>
                     and the world beyond the screen.

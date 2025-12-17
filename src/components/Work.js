@@ -9,15 +9,25 @@ const Work = () => {
             tags: ["NextJs", "Django", "AWS"],
             imageColor: "bg-blue-100", 
             link: "https://www.durgasakha.org",
-            image: "/projects/3-devices-black.png" // Replace with actual image path in public folder
+            image: "/projects/3-devices-black.png",
+            description: "Dynamic website built for a non-profit organization with a content management system, deployed on AWS."
         },
         {
             title: "Log Stream",
             tags: ["Kafka", "Flask", "Postgres",],
             imageColor: "bg-yellow-100",
             link: "https://github.com/OmAvhad/log-stream",
-            image: "/projects/log-stream.png" // Add image path here
+            image: "/projects/log-stream.png",
+            description: "Streams logs from distributed services in real time, processes them via Kafka, and enables fast search, analytics, and visualization through a unified dashboard."
         },
+        {
+            title: "Vest - Trading Dashboard",
+            tags: ["ReactJs", "Fast API", "SQLite"],
+            imageColor: "bg-blue-100", 
+            link: "https://github.com/OmAvhad/vest",
+            image: "/projects/vest.png",
+            description: "A full-stack trading application that supports real-time stock data, buy/sell orders, portfolio tracking, and transaction history."
+        }
     ];
 
     return (
@@ -56,6 +66,7 @@ const Work = () => {
                         </div>
                         
                         <h3 className="text-xl font-medium group-hover:underline">{project.title}</h3>
+                        <h5 className="text-sm text-gray-500">{project.description}</h5>
                     </Link>
                 ))}
             </div>
