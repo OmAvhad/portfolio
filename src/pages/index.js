@@ -28,7 +28,7 @@ function Index() {
             
             <div className="space-y-0 divide-y divide-gray-300">
                 <Hello />
-                {/* <Work /> */}
+                <Work />
                 <About />
                 <Experience />
             </div>
