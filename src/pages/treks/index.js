@@ -14,16 +14,16 @@ function Treks() {
     }, [treks])
 
     return (
-        <div className="flex flex-col lg:flex-row lg:gap-6">
-            <aside className="border-b lg:border-b-0 lg:border-r border-gray-200 lg:sticky lg:top-0 lg:h-screen lg:flex-none lg:w-[320px]">
+        <div className="py-10 md:py-15 lg:py-20 flex flex-col lg:flex-row lg:gap-6 ">
+            <aside className="border-b lg:border-b-0 lg:border-r border-gray-200 lg:sticky lg:top-0 lg:h-screen lg:flex-none lg:w-[280px] xl:w-[320px]">
                 <div className="flex flex-col h-full py-6 px-4">
-                    <h1 className="m-0 mb-2 text-[56px] leading-[0.95] tracking-[-1px]">
+                    <h1 className="m-0 mb-2 text-4xl leading-[0.95] tracking-[-1px]">
                         Treks
                     </h1>
-                    <h2 className="m-0 text-[18px] font-medium text-gray-600">
+                    <h2 className="m-0 text-[18px] font-medium text-gray-500">
                         Trails, peaks, and timeless journeys.
                     </h2>
-                    <p className="mt-3 mb-6 text-[16px] text-gray-900">
+                    <p className="mt-3 mb-6 text-[16px] text-gray-400">
                         From forts to forests, documenting every ascent.
                     </p>
                     <nav className="mt-6 grid auto-rows-min gap-3 overflow-auto pr-2">
@@ -60,7 +60,7 @@ function Treks() {
                                 className="absolute left-4 lg:left-1/2 top-1/2 w-[14px] h-[14px] bg-gray-900 border-4 border-white rounded-full ring-2 ring-gray-900/20 -translate-x-1/2 -translate-y-1/2"
                                 aria-hidden
                             />
-                            <article className="bg-white border border-gray-200 rounded-xl shadow-lg p-6 ml-12 lg:ml-0 md:w-[68%] lg:w-[48%] lg:max-w-[680px]">
+                            <article className="bg-white border border-gray-200 rounded-xl shadow-lg p-6 ml-12 lg:ml-0 sm:w-[68%] md:w-[48%] lg:w-[48%] lg:max-w-[680px]">
                                 {t.image && (
                                     <div className="-mx-6 -mt-6 mb-3 rounded-t-xl overflow-hidden h-[300px] bg-gray-100">
                                         <img
@@ -72,7 +72,7 @@ function Treks() {
                                 )}
                                 <h3 className="text-[20px] mb-1.5">{t.title}</h3>
                                 {t.date && (
-                                    <div className="text-[13px] text-gray-500 mb-2">
+                                    <div className="text-[13px] text-gray-400 mb-2">
                                         {new Date(t.date).toLocaleDateString(undefined, {
                                             day: '2-digit',
                                             month: 'short',
@@ -80,7 +80,7 @@ function Treks() {
                                         })}
                                     </div>
                                 )}
-                                <p className="text-gray-700 leading-6">{t.description}</p>
+                                <p className="text-gray-500 leading-6">{t.description}</p>
                             </article>
                         </section>
                     )
