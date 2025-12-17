@@ -18,7 +18,7 @@ const Work = () => {
     ];
 
     return (
-        <section id="work" className="py-20">
+        <section id="work" className="py-10 md:py-15 lg:py-20">
             <h2 className="text-lg font-normal text-gray-500 mb-12 tracking-widest">Key projects</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">

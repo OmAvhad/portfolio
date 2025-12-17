@@ -12,7 +12,7 @@ const Sidebar = () => {
     ];
 
     return (
-        <aside className="fixed w-64 px-10 py-20 h-screen hidden md:flex flex-col justify-start">
+        <aside className="fixed w-64 px-10 py-20 h-screen hidden lg:flex flex-col justify-start">
             <nav className="space-y-0">
                 {menuItems.map((item) => (
                     <Link 

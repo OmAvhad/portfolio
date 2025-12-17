@@ -1,7 +1,7 @@
 
 const Experience = () => {
     return (
-        <section id="experience" className="py-10 md:py-20">
+        <section id="experience" className="py-10 md:py-15 lg:py-20">
             <h2 className="text-lg font-normal text-gray-500 mb-12 tracking-widest">Experience</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-[1fr_4fr] gap-3 md:gap-4 max-w-4xl">
